@@ -55,12 +55,14 @@ public class CandidateController {
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<Candidate> updateCandidate(@PathVariable String id, @Valid @RequestBody Candidate candidate) {
+    public ResponseEntity<?> updateCandidate(@PathVariable String id, @Valid @RequestBody Candidate candidate) {
         try {
             Candidate updated = candidateService.updateCandidate(id, candidate);
             return ResponseEntity.ok(updated);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
+        return ResponseEntity
+            .badRequest()
+            .body(e.getMessage());
         }
     }
     
