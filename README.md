@@ -36,6 +36,37 @@ A Spring Boot REST API application for managing candidates and vacancies with in
    ./mvnw spring-boot:run
    ```
 
+### Running Tests
+
+The project includes comprehensive unit and integration tests using JUnit 5 and Mockito.
+
+**Run all tests:**
+```bash
+./mvnw test
+```
+
+**Run tests with detailed output:**
+```bash
+./mvnw test -Dtest.verbose=true
+```
+
+**Run specific test class:**
+```bash
+./mvnw test -Dtest=CandidateServiceTest
+```
+
+**Run specific test method:**
+```bash
+./mvnw test -Dtest=CandidateServiceTest#createCandidate_Success
+```
+
+**Run tests for specific package:**
+```bash
+./mvnw test -Dtest=com.jobseeker.cvms.demo.service.*
+```
+
+**Test reports** are generated in `target/surefire-reports/` after running tests.
+
 ### API Documentation
 
 Complete API documentation with examples and testing interface is available at:
