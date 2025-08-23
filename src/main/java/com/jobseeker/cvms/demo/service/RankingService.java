@@ -26,7 +26,7 @@ public class RankingService {
     private final CandidateService candidateService;
     private final VacancyService vacancyService;
     
-    public List<CandidateRankingDto> rankCandidatesForVacancy(String vacancyId) {
+    public List<CandidateRankingDto> rankCandidatesForVacancy(String vacancyId, int page, int size) {
         Vacancy vacancy = vacancyService.getVacancyById(vacancyId)
             .orElseThrow(() -> new IllegalArgumentException("Vacancy not found with id: " + vacancyId));
         
@@ -43,6 +43,8 @@ public class RankingService {
                     .build();
             })
             .sorted((c1, c2) -> Integer.compare(c2.getScore(), c1.getScore()))
+            .skip(page * size)
+            .limit(size)
             .collect(Collectors.toList());
     }
     

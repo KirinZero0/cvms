@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jobseeker.cvms.demo.dto.CandidateRankingDto;
@@ -49,8 +50,10 @@ public class VacancyController {
     }
     
     @GetMapping
-    public ResponseEntity<List<Vacancy>> getAllVacancies() {
-        List<Vacancy> vacancies = vacancyService.getVacancies();
+    public ResponseEntity<List<Vacancy>> getAllVacancies(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        List<Vacancy> vacancies = vacancyService.getVacancies(page, size);
         return ResponseEntity.ok(vacancies);
     }
     
@@ -62,9 +65,12 @@ public class VacancyController {
     }
 
     @GetMapping("/{id}/ranking")
-    public ResponseEntity<List<CandidateRankingDto>> getRankedCandidates(@PathVariable String id) {
+    public ResponseEntity<List<CandidateRankingDto>> getRankedCandidates(
+            @PathVariable String id,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         try {
-            List<CandidateRankingDto> rankings = rankingService.rankCandidatesForVacancy(id);
+            List<CandidateRankingDto> rankings = rankingService.rankCandidatesForVacancy(id, page, size);
             return ResponseEntity.ok(rankings);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();

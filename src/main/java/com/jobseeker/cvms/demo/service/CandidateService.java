@@ -10,6 +10,8 @@ package com.jobseeker.cvms.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jobseeker.cvms.demo.model.Candidate;
@@ -32,6 +34,11 @@ public class CandidateService {
     
     public List<Candidate> getAllCandidates() {
         return candidateRepository.findAll();
+    }
+    
+    public List<Candidate> getAllCandidates(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return candidateRepository.findAll(pageable).getContent();
     }
     
     public Optional<Candidate> getCandidateById(String id) {

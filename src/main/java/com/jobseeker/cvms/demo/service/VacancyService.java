@@ -17,7 +17,8 @@ package com.jobseeker.cvms.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.jobseeker.cvms.demo.model.Vacancy;
@@ -44,6 +45,11 @@ public class VacancyService {
 
     public List<Vacancy> getVacancies() {
         return vacancyRepository.findAll();
+    }
+    
+    public List<Vacancy> getVacancies(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return vacancyRepository.findAll(pageable).getContent();
     }
 
     public Optional<Vacancy> getVacancyById(String id) {
