@@ -25,7 +25,6 @@ import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.jobseeker.cvms.demo.model.Candidate;
@@ -99,7 +98,6 @@ class CandidateServiceTest {
     void getAllCandidates_WithPagination() {
         List<Candidate> candidates = Arrays.asList(testCandidate);
         Page<Candidate> page = new PageImpl<>(candidates);
-        Pageable pageable = PageRequest.of(0, 10);
         
         when(candidateRepository.findAll(any(Pageable.class))).thenReturn(page);
 
