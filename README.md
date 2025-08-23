@@ -114,7 +114,10 @@ The system is designed with extensibility in mind, allowing easy addition of new
 - **JSON Serialization Support**: MongoDB's document structure naturally accommodates new criteria fields
 - **Weight-Based Scoring**: New criteria automatically inherit the weighted scoring system
 
-**Example**: Adding `ExperienceCriteria` or `SkillsCriteria` requires only creating new classes without touching existing code.
+**Example**: To add `ExperienceCriteria`:
+1. Add `EXPERIENCE` to the `CriteriaType` enum
+2. Add `@JsonSubTypes.Type(value = ExperienceCriteria.class, name = "EXPERIENCE")` to the `Criteria` class
+3. Create the new `ExperienceCriteria` class extending `Criteria` and implementing the `matches()` method
 
 ### Scalability for Ranking Process
 The system addresses performance challenges for large-scale candidate ranking:
