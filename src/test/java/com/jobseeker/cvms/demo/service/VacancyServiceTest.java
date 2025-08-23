@@ -211,7 +211,7 @@ class VacancyServiceTest {
             () -> vacancyService.deleteVacancy("999")
         );
 
-        assertEquals("Vacancy not found with id999", exception.getMessage());
+        assertEquals("Vacancy not found with id: 999", exception.getMessage());
         verify(vacancyRepository).existsById("999");
         verify(vacancyRepository, never()).deleteById(anyString());
     }

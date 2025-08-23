@@ -69,7 +69,7 @@ public class VacancyService {
 
     public void deleteVacancy(String id) {
         if(!vacancyRepository.existsById(id)) {
-            throw new IllegalArgumentException("Vacancy not found with id" + id);
+            throw new IllegalArgumentException("Vacancy not found with id: " + id);
         }
         vacancyRepository.deleteById(id);
     }
