@@ -58,7 +58,7 @@ public class VacancyController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<Vacancy> getCandidateById(@PathVariable String id) {
+    public ResponseEntity<Vacancy> getVacancyById(@PathVariable String id) {
         return vacancyService.getVacancyById(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
