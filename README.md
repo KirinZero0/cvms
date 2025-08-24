@@ -17,7 +17,7 @@ A Spring Boot REST API application for managing candidates and vacancies with in
 - **Database**: MongoDB
 - **Validation**: Jakarta Bean Validation
 - **Build Tool**: Maven
-- **Java Version**: 17+
+- **Java Version**: 21+
 
 ## Getting Started
 
